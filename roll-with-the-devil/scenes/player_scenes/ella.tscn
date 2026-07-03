@@ -1,0 +1,146 @@
+[gd_scene load_steps=20 format=3 uid="uid://d34varxd1lt2o"]
+
+[ext_resource type="Script" path="res://scripts/blob_movement.gd" id="1_d4ojp"]
+[ext_resource type="Texture2D" uid="uid://ch1mdbuao5krw" path="res://sprites/Blob_Idle.png" id="2_u6p33"]
+[ext_resource type="Texture2D" uid="uid://bn2qewbp6fuuo" path="res://sprites/Blob_Moving.png" id="3_yvh4e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeo47"]
+atlas = ExtResource("2_u6p33")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0svf"]
+atlas = ExtResource("2_u6p33")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42bof"]
+atlas = ExtResource("2_u6p33")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogbp8"]
+atlas = ExtResource("2_u6p33")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btt4s"]
+atlas = ExtResource("2_u6p33")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bf4t"]
+atlas = ExtResource("2_u6p33")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk2qe"]
+atlas = ExtResource("3_yvh4e")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a828a"]
+atlas = ExtResource("3_yvh4e")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aos7m"]
+atlas = ExtResource("3_yvh4e")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vve0i"]
+atlas = ExtResource("3_yvh4e")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvqa7"]
+atlas = ExtResource("3_yvh4e")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evmv0"]
+atlas = ExtResource("3_yvh4e")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_culrw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeo47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0svf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42bof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogbp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btt4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bf4t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk2qe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a828a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aos7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vve0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvqa7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evmv0")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_54rib"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="Gradient" id="Gradient_rthqr"]
+offsets = PackedFloat32Array(0.227273, 0.694805)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x2jdr"]
+gradient = SubResource("Gradient_rthqr")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="E-11A" type="CharacterBody2D" groups=["Blob"]]
+z_index = 1
+collision_mask = 128
+script = ExtResource("1_d4ojp")
+move_speed = 100.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_culrw")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_54rib")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-40, -17)
+target_position = Vector2(80, 0)
+collision_mask = 8
+hit_from_inside = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -8)
+energy = 0.5
+texture = SubResource("GradientTexture2D_x2jdr")

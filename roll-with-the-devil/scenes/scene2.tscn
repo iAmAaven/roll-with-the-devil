@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bphf30aqmwmis"]
+
+[ext_resource type="Texture2D" uid="uid://cihhjfqtfeh62" path="res://sprites/Scene2.png" id="2_26h82"]
+[ext_resource type="Script" path="res://scripts/camera_follow.gd" id="3_fqyg3"]
+[ext_resource type="Texture2D" uid="uid://hcoysboyb0or" path="res://sprites/TappioGamesSpray.png" id="3_pqyxu"]
+[ext_resource type="PackedScene" uid="uid://d34varxd1lt2o" path="res://scenes/player_scenes/ella.tscn" id="4_cvtyx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0svyi"]
+
+[node name="Scene2" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.433617, 0.671593, 0.986128, 1)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(155, -96)
+texture = ExtResource("2_26h82")
+
+[node name="TappioGamesSpray" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-183, -133)
+texture = ExtResource("3_pqyxu")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, -30)
+collision_layer = 128
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_0svyi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -93)
+zoom = Vector2(3.5, 3.5)
+script = ExtResource("3_fqyg3")
+target_path = NodePath("../E-11A")
+x_min_limit = 0.0
+x_max_limit = 310.0
+
+[node name="E-11A" parent="." instance=ExtResource("4_cvtyx")]
+position = Vector2(-34, -37)

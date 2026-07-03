@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxuutpb7qipw5"]
+
+[ext_resource type="Texture2D" uid="uid://cyka7xq5cjp06" path="res://sprites/icon.svg" id="1_3wixa"]
+[ext_resource type="Script" path="res://scripts/locker.gd" id="1_ekxd8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7lwf"]
+size = Vector2(38, 58)
+
+[node name="Locker" type="Node2D"]
+script = ExtResource("1_ekxd8")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_b7lwf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -29)
+scale = Vector2(0.2, 0.45)
+texture = ExtResource("1_3wixa")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

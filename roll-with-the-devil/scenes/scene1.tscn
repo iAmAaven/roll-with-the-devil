@@ -1,0 +1,192 @@
+[gd_scene load_steps=26 format=3 uid="uid://cabyxr0jso4kh"]
+
+[ext_resource type="Texture2D" uid="uid://lurlx5ulw7h" path="res://sprites/Scene1.png" id="1_g075h"]
+[ext_resource type="Script" path="res://scripts/first_scene_manager.gd" id="1_uhmgp"]
+[ext_resource type="Texture2D" uid="uid://hcoysboyb0or" path="res://sprites/TappioGamesSpray.png" id="2_atyqg"]
+[ext_resource type="PackedScene" uid="uid://d3g5rigp32d1p" path="res://scenes/npc_scenes/tomato_shelby_npc.tscn" id="4_mnjf8"]
+[ext_resource type="Texture2D" uid="uid://vl4su2l543nq" path="res://sprites/Dumpster.png" id="5_idkuq"]
+[ext_resource type="Texture2D" uid="uid://l7wf5ae16kct" path="res://sprites/BlobFallingFromDumpster.png" id="6_5b78f"]
+[ext_resource type="Script" path="res://scripts/scene_change.gd" id="7_5mcyv"]
+[ext_resource type="PackedScene" uid="uid://bphf30aqmwmis" path="res://scenes/scene2.tscn" id="8_stgop"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0svyi"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tkckt"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0gwdg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fttk6"]
+atlas = ExtResource("5_idkuq")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nin2s"]
+atlas = ExtResource("5_idkuq")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aya4o"]
+atlas = ExtResource("5_idkuq")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfeet"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fttk6")
+}, {
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_fttk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nin2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aya4o")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkwdo"]
+atlas = ExtResource("6_5b78f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rphqt"]
+atlas = ExtResource("6_5b78f")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1sfr"]
+atlas = ExtResource("6_5b78f")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m225"]
+atlas = ExtResource("6_5b78f")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctgax"]
+atlas = ExtResource("6_5b78f")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cwet"]
+atlas = ExtResource("6_5b78f")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcnky"]
+atlas = ExtResource("6_5b78f")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afkix"]
+atlas = ExtResource("6_5b78f")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_keuku"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 20.0,
+"texture": SubResource("AtlasTexture_nkwdo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rphqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1sfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m225")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctgax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cwet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcnky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afkix")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkgeo"]
+size = Vector2(20, 290)
+
+[node name="Scene1" type="Node2D"]
+script = ExtResource("1_uhmgp")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.433617, 0.671593, 0.986128, 1)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(0, -72)
+texture = ExtResource("1_g075h")
+
+[node name="TappioGamesSpray" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(60, -91)
+texture = ExtResource("2_atyqg")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, -2)
+collision_layer = 128
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_0svyi")
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2(-128, -72)
+rotation = 1.57079
+collision_layer = 128
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("WorldBoundaryShape2D_tkckt")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(134, -72)
+rotation = -1.57079
+collision_layer = 128
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("WorldBoundaryShape2D_0gwdg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -72)
+zoom = Vector2(4.5, 4.5)
+
+[node name="TomatoShelby_NPC" parent="." instance=ExtResource("4_mnjf8")]
+position = Vector2(42, -8)
+collision_layer = 9
+gravity_scale = 0.0
+
+[node name="DumpsterAnimated" type="Node2D" parent="."]
+position = Vector2(-50, -7)
+
+[node name="Dumpster" type="AnimatedSprite2D" parent="DumpsterAnimated"]
+position = Vector2(0, -40)
+sprite_frames = SubResource("SpriteFrames_hfeet")
+autoplay = "default"
+
+[node name="BlobFall" type="AnimatedSprite2D" parent="DumpsterAnimated"]
+position = Vector2(-20, -30)
+sprite_frames = SubResource("SpriteFrames_keuku")
+autoplay = "default"
+
+[node name="SceneChange" type="Area2D" parent="."]
+position = Vector2(134, -72)
+script = ExtResource("7_5mcyv")
+scene_to_load = ExtResource("8_stgop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChange"]
+shape = SubResource("RectangleShape2D_wkgeo")
+
+[connection signal="body_entered" from="SceneChange" to="SceneChange" method="_on_body_entered"]

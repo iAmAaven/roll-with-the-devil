@@ -1,0 +1,139 @@
+[gd_scene load_steps=21 format=3 uid="uid://c8eqip5l6ml22"]
+
+[ext_resource type="Script" path="res://scripts/tomato_shelby.gd" id="1_c5qw0"]
+[ext_resource type="Texture2D" uid="uid://dqs1ar2vxdui8" path="res://sprites/TomatoShelby_Idle.png" id="2_0vkek"]
+[ext_resource type="PackedScene" uid="uid://d34varxd1lt2o" path="res://scenes/player_scenes/ella.tscn" id="2_drkg8"]
+[ext_resource type="Texture2D" uid="uid://c06iccjdw21h6" path="res://sprites/TomatoShelby_Moving.png" id="4_ktqi7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_463hl"]
+height = 48.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb3fo"]
+atlas = ExtResource("2_0vkek")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeivh"]
+atlas = ExtResource("2_0vkek")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekxnh"]
+atlas = ExtResource("2_0vkek")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wh3n"]
+atlas = ExtResource("2_0vkek")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfnp4"]
+atlas = ExtResource("4_ktqi7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s3xq"]
+atlas = ExtResource("4_ktqi7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d7rw"]
+atlas = ExtResource("4_ktqi7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbgeq"]
+atlas = ExtResource("4_ktqi7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apy4m"]
+atlas = ExtResource("4_ktqi7")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bupvx"]
+atlas = ExtResource("4_ktqi7")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iduu7"]
+atlas = ExtResource("4_ktqi7")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8vmv"]
+atlas = ExtResource("4_ktqi7")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0ilh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qb3fo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeivh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekxnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wh3n")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfnp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s3xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d7rw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbgeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apy4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bupvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iduu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8vmv")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_se4ns"]
+offsets = PackedFloat32Array(0, 0.694805)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hs36a"]
+gradient = SubResource("Gradient_se4ns")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="TomatoShelby_Player" type="CharacterBody2D" groups=["Player"]]
+collision_mask = 128
+script = ExtResource("1_c5qw0")
+move_speed = 80.0
+blob = ExtResource("2_drkg8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
+shape = SubResource("CapsuleShape2D_463hl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_m0ilh")
+animation = &"move"
+autoplay = "idle"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -8)
+energy = 0.75
+texture = SubResource("GradientTexture2D_hs36a")
